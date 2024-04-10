@@ -41,7 +41,6 @@ class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=25)
     last_update = models.DateTimeField(auto_now_add=True,)
-    film = models.ManyToManyField('Film', through='FilmCategory')
 
     class Meta:
         managed = False
@@ -110,7 +109,6 @@ class Film(models.Model):
     special_features = ArrayField(models.CharField(max_length=255), blank=True, null=True)
     fulltext = SearchVectorField()  # This field type is a guess.
     category = models.ManyToManyField(Category, through='FilmCategory')
-    actor = models.ManyToManyField(Actor, through='FilmActor')
 
     class Meta:
         managed = False
